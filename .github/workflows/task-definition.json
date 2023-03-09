@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-south-1:454042841093:task-definition/github-ecs:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-south-1:454042841093:task-definition/github-ecs:2",
     "containerDefinitions": [
         {
             "name": "github-ecs-deployment",
@@ -19,6 +19,12 @@
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "secrets": [
+                {
+                    "name": "ECSPassword",
+                    "valueFrom": "arn:aws:secretsmanager:ap-south-1:454042841093:secret:ECS/mysecret-xu1GgH"
+                }
+            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -31,9 +37,10 @@
         }
     ],
     "family": "github-ecs",
+    "taskRoleArn": "arn:aws:iam::454042841093:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::454042841093:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -48,6 +55,12 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.secrets.asm.environment-variables"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -76,7 +89,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-03-09T05:06:02.651Z",
-    "registeredBy": "arn:aws:iam::454042841093:root",
+    "registeredAt": "2023-03-09T08:19:18.835Z",
+    "registeredBy": "arn:aws:iam::454042841093:user/Raviteja",
     "tags": []
 }
